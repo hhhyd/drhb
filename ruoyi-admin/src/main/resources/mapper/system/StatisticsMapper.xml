@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.StatisticsMapper">
+    
+    <resultMap type="Statistics" id="StatisticsResult">
+        <result property="id"    column="id"    />
+        <result property="provinceId"    column="province_id"    />
+        <result property="cityId"    column="city_id"    />
+        <result property="address"    column="address"    />
+        <result property="so2Value"    column="so2_value"    />
+        <result property="so2Level"    column="so2_level"    />
+        <result property="coValue"    column="co_value"    />
+        <result property="coLevel"    column="co_level"    />
+        <result property="spmValue"    column="spm_value"    />
+        <result property="spmLevel"    column="spm_level"    />
+        <result property="aqiId"    column="aqi_id"    />
+        <result property="confirmDate"    column="confirm_date"    />
+        <result property="confirmTime"    column="confirm_time"    />
+        <result property="gmId"    column="gm_id"    />
+        <result property="fdId"    column="fd_id"    />
+        <result property="information"    column="information"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectStatisticsVo">
+        select id, province_id, city_id, address, so2_value, so2_level, co_value, co_level, spm_value, spm_level, aqi_id, confirm_date, confirm_time, gm_id, fd_id, information, remarks from statistics
+    </sql>
+
+    <select id="selectStatisticsList" parameterType="Statistics" resultMap="StatisticsResult">
+        <include refid="selectStatisticsVo"/>
+        <where>  
+            <if test="provinceId != null "> and province_id = #{provinceId}</if>
+            <if test="cityId != null "> and city_id = #{cityId}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="so2Value != null "> and so2_value = #{so2Value}</if>
+            <if test="so2Level != null "> and so2_level = #{so2Level}</if>
+            <if test="coValue != null "> and co_value = #{coValue}</if>
+            <if test="coLevel != null "> and co_level = #{coLevel}</if>
+            <if test="spmValue != null "> and spm_value = #{spmValue}</if>
+            <if test="spmLevel != null "> and spm_level = #{spmLevel}</if>
+            <if test="aqiId != null "> and aqi_id = #{aqiId}</if>
+            <if test="confirmDate != null  and confirmDate != ''"> and confirm_date = #{confirmDate}</if>
+            <if test="confirmTime != null  and confirmTime != ''"> and confirm_time = #{confirmTime}</if>
+            <if test="gmId != null "> and gm_id = #{gmId}</if>
+            <if test="fdId != null  and fdId != ''"> and fd_id = #{fdId}</if>
+            <if test="information != null  and information != ''"> and information = #{information}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+    
+    <select id="selectStatisticsById" parameterType="Long" resultMap="StatisticsResult">
+        <include refid="selectStatisticsVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertStatistics" parameterType="Statistics" useGeneratedKeys="true" keyProperty="id">
+        insert into statistics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="provinceId != null">province_id,</if>
+            <if test="cityId != null">city_id,</if>
+            <if test="address != null and address != ''">address,</if>
+            <if test="so2Value != null">so2_value,</if>
+            <if test="so2Level != null">so2_level,</if>
+            <if test="coValue != null">co_value,</if>
+            <if test="coLevel != null">co_level,</if>
+            <if test="spmValue != null">spm_value,</if>
+            <if test="spmLevel != null">spm_level,</if>
+            <if test="aqiId != null">aqi_id,</if>
+            <if test="confirmDate != null and confirmDate != ''">confirm_date,</if>
+            <if test="confirmTime != null and confirmTime != ''">confirm_time,</if>
+            <if test="gmId != null">gm_id,</if>
+            <if test="fdId != null and fdId != ''">fd_id,</if>
+            <if test="information != null and information != ''">information,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="provinceId != null">#{provinceId},</if>
+            <if test="cityId != null">#{cityId},</if>
+            <if test="address != null and address != ''">#{address},</if>
+            <if test="so2Value != null">#{so2Value},</if>
+            <if test="so2Level != null">#{so2Level},</if>
+            <if test="coValue != null">#{coValue},</if>
+            <if test="coLevel != null">#{coLevel},</if>
+            <if test="spmValue != null">#{spmValue},</if>
+            <if test="spmLevel != null">#{spmLevel},</if>
+            <if test="aqiId != null">#{aqiId},</if>
+            <if test="confirmDate != null and confirmDate != ''">#{confirmDate},</if>
+            <if test="confirmTime != null and confirmTime != ''">#{confirmTime},</if>
+            <if test="gmId != null">#{gmId},</if>
+            <if test="fdId != null and fdId != ''">#{fdId},</if>
+            <if test="information != null and information != ''">#{information},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStatistics" parameterType="Statistics">
+        update statistics
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="provinceId != null">province_id = #{provinceId},</if>
+            <if test="cityId != null">city_id = #{cityId},</if>
+            <if test="address != null and address != ''">address = #{address},</if>
+            <if test="so2Value != null">so2_value = #{so2Value},</if>
+            <if test="so2Level != null">so2_level = #{so2Level},</if>
+            <if test="coValue != null">co_value = #{coValue},</if>
+            <if test="coLevel != null">co_level = #{coLevel},</if>
+            <if test="spmValue != null">spm_value = #{spmValue},</if>
+            <if test="spmLevel != null">spm_level = #{spmLevel},</if>
+            <if test="aqiId != null">aqi_id = #{aqiId},</if>
+            <if test="confirmDate != null and confirmDate != ''">confirm_date = #{confirmDate},</if>
+            <if test="confirmTime != null and confirmTime != ''">confirm_time = #{confirmTime},</if>
+            <if test="gmId != null">gm_id = #{gmId},</if>
+            <if test="fdId != null and fdId != ''">fd_id = #{fdId},</if>
+            <if test="information != null and information != ''">information = #{information},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteStatisticsById" parameterType="Long">
+        delete from statistics where id = #{id}
+    </delete>
+
+    <delete id="deleteStatisticsByIds" parameterType="String">
+        delete from statistics where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

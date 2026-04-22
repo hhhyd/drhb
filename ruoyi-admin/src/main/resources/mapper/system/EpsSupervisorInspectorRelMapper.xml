@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.EpsSupervisorInspectorRelMapper">
+    
+    <resultMap type="EpsSupervisorInspectorRel" id="EpsSupervisorInspectorRelResult">
+        <result property="id"    column="id"    />
+        <result property="supervisorId"    column="supervisor_id"    />
+        <result property="inspectorId"    column="inspector_id"    />
+        <result property="relationType"    column="relation_type"    />
+        <result property="bindTime"    column="bind_time"    />
+        <result property="isActive"    column="is_active"    />
+    </resultMap>
+
+    <sql id="selectEpsSupervisorInspectorRelVo">
+        select id, supervisor_id, inspector_id, relation_type, bind_time, is_active from eps_supervisor_inspector_rel
+    </sql>
+
+    <select id="selectEpsSupervisorInspectorRelList" parameterType="EpsSupervisorInspectorRel" resultMap="EpsSupervisorInspectorRelResult">
+        <include refid="selectEpsSupervisorInspectorRelVo"/>
+        <where>  
+            <if test="supervisorId != null "> and supervisor_id = #{supervisorId}</if>
+            <if test="inspectorId != null "> and inspector_id = #{inspectorId}</if>
+            <if test="relationType != null  and relationType != ''"> and relation_type = #{relationType}</if>
+            <if test="bindTime != null "> and bind_time = #{bindTime}</if>
+            <if test="isActive != null  and isActive != ''"> and is_active = #{isActive}</if>
+        </where>
+    </select>
+    
+    <select id="selectEpsSupervisorInspectorRelById" parameterType="Long" resultMap="EpsSupervisorInspectorRelResult">
+        <include refid="selectEpsSupervisorInspectorRelVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertEpsSupervisorInspectorRel" parameterType="EpsSupervisorInspectorRel" useGeneratedKeys="true" keyProperty="id">
+        insert into eps_supervisor_inspector_rel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="supervisorId != null">supervisor_id,</if>
+            <if test="inspectorId != null">inspector_id,</if>
+            <if test="relationType != null">relation_type,</if>
+            <if test="bindTime != null">bind_time,</if>
+            <if test="isActive != null">is_active,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="supervisorId != null">#{supervisorId},</if>
+            <if test="inspectorId != null">#{inspectorId},</if>
+            <if test="relationType != null">#{relationType},</if>
+            <if test="bindTime != null">#{bindTime},</if>
+            <if test="isActive != null">#{isActive},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEpsSupervisorInspectorRel" parameterType="EpsSupervisorInspectorRel">
+        update eps_supervisor_inspector_rel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="supervisorId != null">supervisor_id = #{supervisorId},</if>
+            <if test="inspectorId != null">inspector_id = #{inspectorId},</if>
+            <if test="relationType != null">relation_type = #{relationType},</if>
+            <if test="bindTime != null">bind_time = #{bindTime},</if>
+            <if test="isActive != null">is_active = #{isActive},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteEpsSupervisorInspectorRelById" parameterType="Long">
+        delete from eps_supervisor_inspector_rel where id = #{id}
+    </delete>
+
+    <delete id="deleteEpsSupervisorInspectorRelByIds" parameterType="String">
+        delete from eps_supervisor_inspector_rel where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

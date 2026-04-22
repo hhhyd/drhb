@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.EpsGridInspectorMapper">
+    
+    <resultMap type="EpsGridInspector" id="EpsGridInspectorResult">
+        <result property="inspectorId"    column="inspector_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="employeeCode"    column="employee_code"    />
+        <result property="realName"    column="real_name"    />
+        <result property="phone"    column="phone"    />
+        <result property="workStatus"    column="work_status"    />
+        <result property="provinceCode"    column="province_code"    />
+        <result property="cityCode"    column="city_code"    />
+    </resultMap>
+
+    <sql id="selectEpsGridInspectorVo">
+        select inspector_id, user_id, employee_code, real_name, phone, work_status, province_code, city_code from eps_grid_inspector
+    </sql>
+
+    <select id="selectEpsGridInspectorList" parameterType="EpsGridInspector" resultMap="EpsGridInspectorResult">
+        <include refid="selectEpsGridInspectorVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="employeeCode != null  and employeeCode != ''"> and employee_code = #{employeeCode}</if>
+            <if test="realName != null  and realName != ''"> and real_name like concat('%', #{realName}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="workStatus != null  and workStatus != ''"> and work_status = #{workStatus}</if>
+            <if test="provinceCode != null  and provinceCode != ''"> and province_code = #{provinceCode}</if>
+            <if test="cityCode != null  and cityCode != ''"> and city_code = #{cityCode}</if>
+        </where>
+    </select>
+    
+    <select id="selectEpsGridInspectorByInspectorId" parameterType="Long" resultMap="EpsGridInspectorResult">
+        <include refid="selectEpsGridInspectorVo"/>
+        where inspector_id = #{inspectorId}
+    </select>
+
+    <insert id="insertEpsGridInspector" parameterType="EpsGridInspector" useGeneratedKeys="true" keyProperty="inspectorId">
+        insert into eps_grid_inspector
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="employeeCode != null and employeeCode != ''">employee_code,</if>
+            <if test="realName != null">real_name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="workStatus != null">work_status,</if>
+            <if test="provinceCode != null">province_code,</if>
+            <if test="cityCode != null">city_code,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="employeeCode != null and employeeCode != ''">#{employeeCode},</if>
+            <if test="realName != null">#{realName},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="workStatus != null">#{workStatus},</if>
+            <if test="provinceCode != null">#{provinceCode},</if>
+            <if test="cityCode != null">#{cityCode},</if>
+         </trim>
+    </insert>
+
+    <update id="updateEpsGridInspector" parameterType="EpsGridInspector">
+        update eps_grid_inspector
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="employeeCode != null and employeeCode != ''">employee_code = #{employeeCode},</if>
+            <if test="realName != null">real_name = #{realName},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="workStatus != null">work_status = #{workStatus},</if>
+            <if test="provinceCode != null">province_code = #{provinceCode},</if>
+            <if test="cityCode != null">city_code = #{cityCode},</if>
+        </trim>
+        where inspector_id = #{inspectorId}
+    </update>
+
+    <delete id="deleteEpsGridInspectorByInspectorId" parameterType="Long">
+        delete from eps_grid_inspector where inspector_id = #{inspectorId}
+    </delete>
+
+    <delete id="deleteEpsGridInspectorByInspectorIds" parameterType="String">
+        delete from eps_grid_inspector where inspector_id in 
+        <foreach item="inspectorId" collection="array" open="(" separator="," close=")">
+            #{inspectorId}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,44 @@
+import request from '@/utils/request'
+
+// 查询【请填写功能名称】列表
+export function listStatistics(query) {
+  return request({
+    url: '/system/statistics/list',
+    method: 'get',
+    params: query
+  })
+}
+
+// 查询【请填写功能名称】详细
+export function getStatistics(id) {
+  return request({
+    url: '/system/statistics/' + id,
+    method: 'get'
+  })
+}
+
+// 新增【请填写功能名称】
+export function addStatistics(data) {
+  return request({
+    url: '/system/statistics',
+    method: 'post',
+    data: data
+  })
+}
+
+// 修改【请填写功能名称】
+export function updateStatistics(data) {
+  return request({
+    url: '/system/statistics',
+    method: 'put',
+    data: data
+  })
+}
+
+// 删除【请填写功能名称】
+export function delStatistics(id) {
+  return request({
+    url: '/system/statistics/' + id,
+    method: 'delete'
+  })
+}

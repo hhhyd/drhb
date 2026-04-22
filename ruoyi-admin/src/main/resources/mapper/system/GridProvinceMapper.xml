@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.GridProvinceMapper">
+    
+    <resultMap type="GridProvince" id="GridProvinceResult">
+        <result property="provinceId"    column="province_id"    />
+        <result property="provinceName"    column="province_name"    />
+        <result property="provinceAbbr"    column="province_abbr"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectGridProvinceVo">
+        select province_id, province_name, province_abbr, remarks from grid_province
+    </sql>
+
+    <select id="selectGridProvinceList" parameterType="GridProvince" resultMap="GridProvinceResult">
+        <include refid="selectGridProvinceVo"/>
+        <where>  
+            <if test="provinceName != null  and provinceName != ''"> and province_name like concat('%', #{provinceName}, '%')</if>
+            <if test="provinceAbbr != null  and provinceAbbr != ''"> and province_abbr = #{provinceAbbr}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+    
+    <select id="selectGridProvinceByProvinceId" parameterType="Long" resultMap="GridProvinceResult">
+        <include refid="selectGridProvinceVo"/>
+        where province_id = #{provinceId}
+    </select>
+
+    <insert id="insertGridProvince" parameterType="GridProvince" useGeneratedKeys="true" keyProperty="provinceId">
+        insert into grid_province
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="provinceName != null and provinceName != ''">province_name,</if>
+            <if test="provinceAbbr != null and provinceAbbr != ''">province_abbr,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="provinceName != null and provinceName != ''">#{provinceName},</if>
+            <if test="provinceAbbr != null and provinceAbbr != ''">#{provinceAbbr},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGridProvince" parameterType="GridProvince">
+        update grid_province
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="provinceName != null and provinceName != ''">province_name = #{provinceName},</if>
+            <if test="provinceAbbr != null and provinceAbbr != ''">province_abbr = #{provinceAbbr},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where province_id = #{provinceId}
+    </update>
+
+    <delete id="deleteGridProvinceByProvinceId" parameterType="Long">
+        delete from grid_province where province_id = #{provinceId}
+    </delete>
+
+    <delete id="deleteGridProvinceByProvinceIds" parameterType="String">
+        delete from grid_province where province_id in 
+        <foreach item="provinceId" collection="array" open="(" separator="," close=")">
+            #{provinceId}
+        </foreach>
+    </delete>
+</mapper>

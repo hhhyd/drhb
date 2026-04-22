@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AqiMapper">
+    
+    <resultMap type="Aqi" id="AqiResult">
+        <result property="aqiId"    column="aqi_id"    />
+        <result property="chineseExplain"    column="chinese_explain"    />
+        <result property="aqiExplain"    column="aqi_explain"    />
+        <result property="color"    column="color"    />
+        <result property="healthImpact"    column="health_impact"    />
+        <result property="takeSteps"    column="take_steps"    />
+        <result property="so2Min"    column="so2_min"    />
+        <result property="so2Max"    column="so2_max"    />
+        <result property="coMin"    column="co_min"    />
+        <result property="coMax"    column="co_max"    />
+        <result property="spmMin"    column="spm_min"    />
+        <result property="spmMax"    column="spm_max"    />
+        <result property="remarks"    column="remarks"    />
+    </resultMap>
+
+    <sql id="selectAqiVo">
+        select aqi_id, chinese_explain, aqi_explain, color, health_impact, take_steps, so2_min, so2_max, co_min, co_max, spm_min, spm_max, remarks from aqi
+    </sql>
+
+    <select id="selectAqiList" parameterType="Aqi" resultMap="AqiResult">
+        <include refid="selectAqiVo"/>
+        <where>  
+            <if test="chineseExplain != null  and chineseExplain != ''"> and chinese_explain = #{chineseExplain}</if>
+            <if test="aqiExplain != null  and aqiExplain != ''"> and aqi_explain = #{aqiExplain}</if>
+            <if test="color != null  and color != ''"> and color = #{color}</if>
+            <if test="healthImpact != null  and healthImpact != ''"> and health_impact = #{healthImpact}</if>
+            <if test="takeSteps != null  and takeSteps != ''"> and take_steps = #{takeSteps}</if>
+            <if test="so2Min != null "> and so2_min = #{so2Min}</if>
+            <if test="so2Max != null "> and so2_max = #{so2Max}</if>
+            <if test="coMin != null "> and co_min = #{coMin}</if>
+            <if test="coMax != null "> and co_max = #{coMax}</if>
+            <if test="spmMin != null "> and spm_min = #{spmMin}</if>
+            <if test="spmMax != null "> and spm_max = #{spmMax}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks = #{remarks}</if>
+        </where>
+    </select>
+    
+    <select id="selectAqiByAqiId" parameterType="Long" resultMap="AqiResult">
+        <include refid="selectAqiVo"/>
+        where aqi_id = #{aqiId}
+    </select>
+
+    <insert id="insertAqi" parameterType="Aqi" useGeneratedKeys="true" keyProperty="aqiId">
+        insert into aqi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chineseExplain != null and chineseExplain != ''">chinese_explain,</if>
+            <if test="aqiExplain != null and aqiExplain != ''">aqi_explain,</if>
+            <if test="color != null and color != ''">color,</if>
+            <if test="healthImpact != null">health_impact,</if>
+            <if test="takeSteps != null">take_steps,</if>
+            <if test="so2Min != null">so2_min,</if>
+            <if test="so2Max != null">so2_max,</if>
+            <if test="coMin != null">co_min,</if>
+            <if test="coMax != null">co_max,</if>
+            <if test="spmMin != null">spm_min,</if>
+            <if test="spmMax != null">spm_max,</if>
+            <if test="remarks != null">remarks,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chineseExplain != null and chineseExplain != ''">#{chineseExplain},</if>
+            <if test="aqiExplain != null and aqiExplain != ''">#{aqiExplain},</if>
+            <if test="color != null and color != ''">#{color},</if>
+            <if test="healthImpact != null">#{healthImpact},</if>
+            <if test="takeSteps != null">#{takeSteps},</if>
+            <if test="so2Min != null">#{so2Min},</if>
+            <if test="so2Max != null">#{so2Max},</if>
+            <if test="coMin != null">#{coMin},</if>
+            <if test="coMax != null">#{coMax},</if>
+            <if test="spmMin != null">#{spmMin},</if>
+            <if test="spmMax != null">#{spmMax},</if>
+            <if test="remarks != null">#{remarks},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAqi" parameterType="Aqi">
+        update aqi
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chineseExplain != null and chineseExplain != ''">chinese_explain = #{chineseExplain},</if>
+            <if test="aqiExplain != null and aqiExplain != ''">aqi_explain = #{aqiExplain},</if>
+            <if test="color != null and color != ''">color = #{color},</if>
+            <if test="healthImpact != null">health_impact = #{healthImpact},</if>
+            <if test="takeSteps != null">take_steps = #{takeSteps},</if>
+            <if test="so2Min != null">so2_min = #{so2Min},</if>
+            <if test="so2Max != null">so2_max = #{so2Max},</if>
+            <if test="coMin != null">co_min = #{coMin},</if>
+            <if test="coMax != null">co_max = #{coMax},</if>
+            <if test="spmMin != null">spm_min = #{spmMin},</if>
+            <if test="spmMax != null">spm_max = #{spmMax},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+        </trim>
+        where aqi_id = #{aqiId}
+    </update>
+
+    <delete id="deleteAqiByAqiId" parameterType="Long">
+        delete from aqi where aqi_id = #{aqiId}
+    </delete>
+
+    <delete id="deleteAqiByAqiIds" parameterType="String">
+        delete from aqi where aqi_id in 
+        <foreach item="aqiId" collection="array" open="(" separator="," close=")">
+            #{aqiId}
+        </foreach>
+    </delete>
+</mapper>

@@ -85,7 +85,7 @@ CREATE TABLE `grid_province` (
                                  `province_id` INT PRIMARY KEY AUTO_INCREMENT COMMENT '系统网格覆盖省区域编号',
                                  `province_name` VARCHAR(20) NOT NULL COMMENT '系统网格覆盖省区域名称',
                                  `province_abbr` VARCHAR(2) NOT NULL COMMENT '系统网格覆盖省区域简称',
-                                 `remarks` VARCHAR(200) COMMENT '备注',
+                                 `remarks` VARCHAR(200) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统网格覆盖省区域表';
 
 

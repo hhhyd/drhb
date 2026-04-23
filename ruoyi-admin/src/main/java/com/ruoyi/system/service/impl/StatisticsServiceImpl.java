@@ -8,10 +8,10 @@ import com.ruoyi.system.domain.Statistics;
 import com.ruoyi.system.service.IStatisticsService;
 
 /**
- * 【请填写功能名称】Service业务层处理
+ * 统计信息Service业务层处理
  * 
  * @author ruoyi
- * @date 2026-04-22
+ * @date 2026-04-23
  */
 @Service
 public class StatisticsServiceImpl implements IStatisticsService 
@@ -20,10 +20,10 @@ public class StatisticsServiceImpl implements IStatisticsService
     private StatisticsMapper statisticsMapper;
 
     /**
-     * 查询【请填写功能名称】
+     * 查询统计信息
      * 
-     * @param id 【请填写功能名称】主键
-     * @return 【请填写功能名称】
+     * @param id 统计信息主键
+     * @return 统计信息
      */
     @Override
     public Statistics selectStatisticsById(Long id)
@@ -32,10 +32,10 @@ public class StatisticsServiceImpl implements IStatisticsService
     }
 
     /**
-     * 查询【请填写功能名称】列表
+     * 查询统计信息列表
      * 
-     * @param statistics 【请填写功能名称】
-     * @return 【请填写功能名称】
+     * @param statistics 统计信息
+     * @return 统计信息
      */
     @Override
     public List<Statistics> selectStatisticsList(Statistics statistics)
@@ -44,9 +44,9 @@ public class StatisticsServiceImpl implements IStatisticsService
     }
 
     /**
-     * 新增【请填写功能名称】
+     * 新增统计信息
      * 
-     * @param statistics 【请填写功能名称】
+     * @param statistics 统计信息
      * @return 结果
      */
     @Override
@@ -56,9 +56,9 @@ public class StatisticsServiceImpl implements IStatisticsService
     }
 
     /**
-     * 修改【请填写功能名称】
+     * 修改统计信息
      * 
-     * @param statistics 【请填写功能名称】
+     * @param statistics 统计信息
      * @return 结果
      */
     @Override
@@ -68,9 +68,9 @@ public class StatisticsServiceImpl implements IStatisticsService
     }
 
     /**
-     * 批量删除【请填写功能名称】
+     * 批量删除统计信息
      * 
-     * @param ids 需要删除的【请填写功能名称】主键
+     * @param ids 需要删除的统计信息主键
      * @return 结果
      */
     @Override
@@ -80,9 +80,9 @@ public class StatisticsServiceImpl implements IStatisticsService
     }
 
     /**
-     * 删除【请填写功能名称】信息
+     * 删除统计信息信息
      * 
-     * @param id 【请填写功能名称】主键
+     * @param id 统计信息主键
      * @return 结果
      */
     @Override

@@ -1,26 +1,25 @@
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】', '3', '1', 'statistics', 'system/statistics/index', 1, 0, 'C', '0', '0', 'system:statistics:list', '#', 'admin', sysdate(), '', null, '【请填写功能名称】菜单');
+values('统计信息', '3', '1', 'statistics', 'system/statistics/index', 1, 0, 'C', '0', '0', 'system:statistics:list', '#', 'admin', sysdate(), '', null, '统计信息菜单');
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:query',        '#', 'admin', sysdate(), '', null, '');
+values('统计信息查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:query',        '#', 'admin', sysdate(), '', null, '');
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:add',          '#', 'admin', sysdate(), '', null, '');
+values('统计信息新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:add',          '#', 'admin', sysdate(), '', null, '');
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:edit',         '#', 'admin', sysdate(), '', null, '');
+values('统计信息修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:edit',         '#', 'admin', sysdate(), '', null, '');
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:remove',       '#', 'admin', sysdate(), '', null, '');
+values('统计信息删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:remove',       '#', 'admin', sysdate(), '', null, '');
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('【请填写功能名称】导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:export',       '#', 'admin', sysdate(), '', null, '');
-
+values('统计信息导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:statistics:export',       '#', 'admin', sysdate(), '', null, '');
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('系统网格覆盖省区域', '3', '1', 'province', 'system/province/index', 1, 0, 'C', '0', '0', 'system:province:list', '#', 'admin', sysdate(), '', null, '系统网格覆盖省区域菜单');

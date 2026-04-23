@@ -22,10 +22,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
- * 【请填写功能名称】Controller
+ * 统计信息Controller
  * 
  * @author ruoyi
- * @date 2026-04-22
+ * @date 2026-04-23
  */
 @RestController
 @RequestMapping("/system/statistics")
@@ -35,7 +35,7 @@ public class StatisticsController extends BaseController
     private IStatisticsService statisticsService;
 
     /**
-     * 查询【请填写功能名称】列表
+     * 查询统计信息列表
      */
     @PreAuthorize("@ss.hasPermi('system:statistics:list')")
     @GetMapping("/list")
@@ -47,20 +47,20 @@ public class StatisticsController extends BaseController
     }
 
     /**
-     * 导出【请填写功能名称】列表
+     * 导出统计信息列表
      */
     @PreAuthorize("@ss.hasPermi('system:statistics:export')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
+    @Log(title = "统计信息", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, Statistics statistics)
     {
         List<Statistics> list = statisticsService.selectStatisticsList(statistics);
         ExcelUtil<Statistics> util = new ExcelUtil<Statistics>(Statistics.class);
-        util.exportExcel(response, list, "【请填写功能名称】数据");
+        util.exportExcel(response, list, "统计信息数据");
     }
 
     /**
-     * 获取【请填写功能名称】详细信息
+     * 获取统计信息详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:statistics:query')")
     @GetMapping(value = "/{id}")
@@ -70,10 +70,10 @@ public class StatisticsController extends BaseController
     }
 
     /**
-     * 新增【请填写功能名称】
+     * 新增统计信息
      */
     @PreAuthorize("@ss.hasPermi('system:statistics:add')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
+    @Log(title = "统计信息", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Statistics statistics)
     {
@@ -81,10 +81,10 @@ public class StatisticsController extends BaseController
     }
 
     /**
-     * 修改【请填写功能名称】
+     * 修改统计信息
      */
     @PreAuthorize("@ss.hasPermi('system:statistics:edit')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
+    @Log(title = "统计信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Statistics statistics)
     {
@@ -92,10 +92,10 @@ public class StatisticsController extends BaseController
     }
 
     /**
-     * 删除【请填写功能名称】
+     * 删除统计信息
      */
     @PreAuthorize("@ss.hasPermi('system:statistics:remove')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
+    @Log(title = "统计信息", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {

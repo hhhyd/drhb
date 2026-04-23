@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 查询【请填写功能名称】列表
+// 查询统计信息列表
 export function listStatistics(query) {
   return request({
     url: '/system/statistics/list',
@@ -9,7 +9,7 @@ export function listStatistics(query) {
   })
 }
 
-// 查询【请填写功能名称】详细
+// 查询统计信息详细
 export function getStatistics(id) {
   return request({
     url: '/system/statistics/' + id,
@@ -17,7 +17,7 @@ export function getStatistics(id) {
   })
 }
 
-// 新增【请填写功能名称】
+// 新增统计信息
 export function addStatistics(data) {
   return request({
     url: '/system/statistics',
@@ -26,7 +26,7 @@ export function addStatistics(data) {
   })
 }
 
-// 修改【请填写功能名称】
+// 修改统计信息
 export function updateStatistics(data) {
   return request({
     url: '/system/statistics',
@@ -35,7 +35,7 @@ export function updateStatistics(data) {
   })
 }
 
-// 删除【请填写功能名称】
+// 删除统计信息
 export function delStatistics(id) {
   return request({
     url: '/system/statistics/' + id,

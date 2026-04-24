@@ -27,10 +27,10 @@
       </el-form-item>
       <el-form-item label="统计日期" prop="statDate">
         <el-date-picker clearable
-          v-model="queryParams.statDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择统计日期">
+                        v-model="queryParams.statDate"
+                        type="date"
+                        value-format="yyyy-MM-dd"
+                        placeholder="请选择统计日期">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="SO2超标累计数量" prop="so2ExceedCount">
@@ -206,7 +206,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -237,10 +237,10 @@
           <el-col :span="24">
             <el-form-item label="统计日期" prop="statDate">
               <el-date-picker clearable
-                v-model="form.statDate"
-                type="date"
-                value-format="yyyy-MM-dd"
-                placeholder="请选择统计日期">
+                              v-model="form.statDate"
+                              type="date"
+                              value-format="yyyy-MM-dd"
+                              placeholder="请选择统计日期">
               </el-date-picker>
             </el-form-item>
           </el-col>

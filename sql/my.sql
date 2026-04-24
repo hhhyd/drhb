@@ -159,9 +159,3 @@ insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame
 values('公众监督员详细信息导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:supervisor:export',       '#', 'admin', sysdate(), '', null, '');
 
 
-INSERT INTO sys_role (role_id, role_name, role_key, role_sort, data_scope, status, del_flag, create_by, create_time, update_by, update_time, remark)
-VALUES (3, '决策者', 'decision_maker', 3, '1', '0', '0', 'admin', NOW(), 'admin', NOW(), '决策者角色');
-
-INSERT INTO sys_role_menu (role_id, menu_id) VALUES
-                                                 (3, 2096),  -- 决策者父菜单
-                                                 (3, 2097);  -- 决策面板子菜单

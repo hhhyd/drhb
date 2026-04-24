@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NepvDecisionDataMapper">
+    
+    <resultMap type="NepvDecisionData" id="NepvDecisionDataResult">
+        <result property="id"    column="id"    />
+        <result property="statType"    column="stat_type"    />
+        <result property="regionCode"    column="region_code"    />
+        <result property="regionName"    column="region_name"    />
+        <result property="statPeriod"    column="stat_period"    />
+        <result property="statDate"    column="stat_date"    />
+        <result property="so2ExceedCount"    column="so2_exceed_count"    />
+        <result property="coExceedCount"    column="co_exceed_count"    />
+        <result property="pm25ExceedCount"    column="pm25_exceed_count"    />
+        <result property="aqiExceedCount"    column="aqi_exceed_count"    />
+        <result property="aqiLevel"    column="aqi_level"    />
+        <result property="totalDetectionCount"    column="total_detection_count"    />
+        <result property="goodDetectionCount"    column="good_detection_count"    />
+        <result property="exceedDetectionCount"    column="exceed_detection_count"    />
+        <result property="coverageRate"    column="coverage_rate"    />
+        <result property="dataValue"    column="data_value"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectNepvDecisionDataVo">
+        select id, stat_type, region_code, region_name, stat_period, stat_date, so2_exceed_count, co_exceed_count, pm25_exceed_count, aqi_exceed_count, aqi_level, total_detection_count, good_detection_count, exceed_detection_count, coverage_rate, data_value, create_time, update_time from nepv_decision_data
+    </sql>
+
+    <select id="selectNepvDecisionDataList" parameterType="NepvDecisionData" resultMap="NepvDecisionDataResult">
+        <include refid="selectNepvDecisionDataVo"/>
+        <where>  
+            <if test="statType != null  and statType != ''"> and stat_type = #{statType}</if>
+            <if test="regionCode != null  and regionCode != ''"> and region_code = #{regionCode}</if>
+            <if test="regionName != null  and regionName != ''"> and region_name like concat('%', #{regionName}, '%')</if>
+            <if test="statPeriod != null  and statPeriod != ''"> and stat_period = #{statPeriod}</if>
+            <if test="statDate != null "> and stat_date = #{statDate}</if>
+            <if test="so2ExceedCount != null "> and so2_exceed_count = #{so2ExceedCount}</if>
+            <if test="coExceedCount != null "> and co_exceed_count = #{coExceedCount}</if>
+            <if test="pm25ExceedCount != null "> and pm25_exceed_count = #{pm25ExceedCount}</if>
+            <if test="aqiExceedCount != null "> and aqi_exceed_count = #{aqiExceedCount}</if>
+            <if test="aqiLevel != null  and aqiLevel != ''"> and aqi_level = #{aqiLevel}</if>
+            <if test="totalDetectionCount != null "> and total_detection_count = #{totalDetectionCount}</if>
+            <if test="goodDetectionCount != null "> and good_detection_count = #{goodDetectionCount}</if>
+            <if test="exceedDetectionCount != null "> and exceed_detection_count = #{exceedDetectionCount}</if>
+            <if test="coverageRate != null "> and coverage_rate = #{coverageRate}</if>
+            <if test="dataValue != null "> and data_value = #{dataValue}</if>
+        </where>
+    </select>
+    
+    <select id="selectNepvDecisionDataById" parameterType="Long" resultMap="NepvDecisionDataResult">
+        <include refid="selectNepvDecisionDataVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertNepvDecisionData" parameterType="NepvDecisionData" useGeneratedKeys="true" keyProperty="id">
+        insert into nepv_decision_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="statType != null and statType != ''">stat_type,</if>
+            <if test="regionCode != null">region_code,</if>
+            <if test="regionName != null">region_name,</if>
+            <if test="statPeriod != null and statPeriod != ''">stat_period,</if>
+            <if test="statDate != null">stat_date,</if>
+            <if test="so2ExceedCount != null">so2_exceed_count,</if>
+            <if test="coExceedCount != null">co_exceed_count,</if>
+            <if test="pm25ExceedCount != null">pm25_exceed_count,</if>
+            <if test="aqiExceedCount != null">aqi_exceed_count,</if>
+            <if test="aqiLevel != null">aqi_level,</if>
+            <if test="totalDetectionCount != null">total_detection_count,</if>
+            <if test="goodDetectionCount != null">good_detection_count,</if>
+            <if test="exceedDetectionCount != null">exceed_detection_count,</if>
+            <if test="coverageRate != null">coverage_rate,</if>
+            <if test="dataValue != null">data_value,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="statType != null and statType != ''">#{statType},</if>
+            <if test="regionCode != null">#{regionCode},</if>
+            <if test="regionName != null">#{regionName},</if>
+            <if test="statPeriod != null and statPeriod != ''">#{statPeriod},</if>
+            <if test="statDate != null">#{statDate},</if>
+            <if test="so2ExceedCount != null">#{so2ExceedCount},</if>
+            <if test="coExceedCount != null">#{coExceedCount},</if>
+            <if test="pm25ExceedCount != null">#{pm25ExceedCount},</if>
+            <if test="aqiExceedCount != null">#{aqiExceedCount},</if>
+            <if test="aqiLevel != null">#{aqiLevel},</if>
+            <if test="totalDetectionCount != null">#{totalDetectionCount},</if>
+            <if test="goodDetectionCount != null">#{goodDetectionCount},</if>
+            <if test="exceedDetectionCount != null">#{exceedDetectionCount},</if>
+            <if test="coverageRate != null">#{coverageRate},</if>
+            <if test="dataValue != null">#{dataValue},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNepvDecisionData" parameterType="NepvDecisionData">
+        update nepv_decision_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="statType != null and statType != ''">stat_type = #{statType},</if>
+            <if test="regionCode != null">region_code = #{regionCode},</if>
+            <if test="regionName != null">region_name = #{regionName},</if>
+            <if test="statPeriod != null and statPeriod != ''">stat_period = #{statPeriod},</if>
+            <if test="statDate != null">stat_date = #{statDate},</if>
+            <if test="so2ExceedCount != null">so2_exceed_count = #{so2ExceedCount},</if>
+            <if test="coExceedCount != null">co_exceed_count = #{coExceedCount},</if>
+            <if test="pm25ExceedCount != null">pm25_exceed_count = #{pm25ExceedCount},</if>
+            <if test="aqiExceedCount != null">aqi_exceed_count = #{aqiExceedCount},</if>
+            <if test="aqiLevel != null">aqi_level = #{aqiLevel},</if>
+            <if test="totalDetectionCount != null">total_detection_count = #{totalDetectionCount},</if>
+            <if test="goodDetectionCount != null">good_detection_count = #{goodDetectionCount},</if>
+            <if test="exceedDetectionCount != null">exceed_detection_count = #{exceedDetectionCount},</if>
+            <if test="coverageRate != null">coverage_rate = #{coverageRate},</if>
+            <if test="dataValue != null">data_value = #{dataValue},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNepvDecisionDataById" parameterType="Long">
+        delete from nepv_decision_data where id = #{id}
+    </delete>
+
+    <delete id="deleteNepvDecisionDataByIds" parameterType="String">
+        delete from nepv_decision_data where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
